@@ -22,7 +22,7 @@ const CurrentWeatherComponent: React.FC = () => {
 
     return <Container>
         {error && <h1>Error</h1>}
-        <h1>Current Weather:</h1>
+        <h1>Actual Weather</h1>
         {!error && currentWeather.map((item) => {
             return (<Card>
                 <WeatherBitImage description={item.weather.description} icon={item.weather.icon} />
