@@ -1,7 +1,7 @@
 import React from 'react';
-import CoordinatesForm from './components/CoordinatesForm';
-import CurrentWeatherComponent from './components/CurrentWeatherComponent';
-import ForecastComponent from './components/ForecastComponent';
+import CoordinatesForm from './components/coordinates/CoordinatesForm';
+import CurrentWeatherComponent from './components/current-weather/CurrentWeatherComponent';
+import ForecastComponent from './components/forecast-weather/ForecastComponent';
 import Line from './components/ui/Line';
 
 function App() {

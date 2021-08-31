@@ -1,21 +1,40 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useReducer } from "react";
 import Container from "../ui/Container";
 import CoordinatesInput from "./CoordinatesInput";
+import { CoordinatesReducerAction } from "./reducer/CoordinatesReducerActions";
+import { reducer, ValidCoordinatesReducer } from "./reducer/ValidCoordinatesReducer";
 
-//USEREDUCER FOR STATE
+const reducerInitialState = {
+    isLatValid: false,
+    isLongValid: false,
+}
 
-const CoordinatesForm: React.FC = () => {
+export interface CoordinatesFormProps{
+    onSubmit:(lat: number,long: number)=>void
+}
+
+const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
+
+    const [state, dispatch] = useReducer<ValidCoordinatesReducer>(reducer, reducerInitialState)
 
     const onSubmitHandler = (event: FormEvent) => {
         event.preventDefault();
+
+        if(!state.isLatValid || !state.isLongValid){
+            return;
+        }
+
+        props.onSubmit())
+
+
     }
 
     const onValidateLatHandler =(isValid: boolean)=>{
-
+        dispatch({actionType: CoordinatesReducerAction.SETLAT, value: isValid});
     }
 
     const onValidateLongHandler =(isValid: boolean)=>{
-
+        dispatch({actionType: CoordinatesReducerAction.SETLONG, value: isValid});
     }
 
     return <Container>

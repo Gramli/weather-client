@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import UseWeatherApi from "../hooks/useWeaterApi";
-import CurrentWeather from "../model/CurrentWeather";
-import Card from "./ui/Card";
-import LabeledText from "./LabeledText";
-import WeatherBitImage from "./WeatherBitImage";
-import Container from "./ui/Container";
+import UseWeatherApi from "../../hooks/useWeaterApi";
+import CurrentWeather from "../../model/CurrentWeather";
+import Card from "../ui/Card";
+import LabeledText from "../ui/LabeledText";
+import WeatherBitImage from "../ui/WeatherBitImage";
+import Container from "../ui/Container";
 
 const CurrentWeatherComponent: React.FC = () => {
 
