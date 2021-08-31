@@ -7,15 +7,10 @@ export type ValidCoordinatesReducer = Reducer<CoordinatesReducerState, Coordinat
 export const reducer: ValidCoordinatesReducer = (prevState:CoordinatesReducerState, action:CoordinatesReducerActions) => {
 
     switch(action.actionType){
-        case CoordinatesReducerAction.SETLAT:
-        return {
-            ...prevState,
-            isLatValid: action.value
-        }
-        case CoordinatesReducerAction.SETLONG:
+        case CoordinatesReducerAction.SETCOORDINATES:
             return {
                 ...prevState,
-                isLongValid: action.value
+                coordinates: action.value
             }
     }
 }

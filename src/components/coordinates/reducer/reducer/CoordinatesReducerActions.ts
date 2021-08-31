@@ -1,9 +1,10 @@
+import { Coordinates } from "../../../model/Coordinates";
+
 export enum  CoordinatesReducerAction{
-    SETLAT,
-    SETLONG,
+    SET,
 }
 
 export interface CoordinatesReducerActions{
     actionType: CoordinatesReducerAction,
-    value: boolean
+    value: Coordinates
 }
