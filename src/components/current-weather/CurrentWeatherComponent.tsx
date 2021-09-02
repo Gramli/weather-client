@@ -6,10 +6,15 @@ import Card from "../ui/Card";
 import LabeledText from "../ui/LabeledText";
 import WeatherBitImage from "../ui/WeatherBitImage";
 import Container from "../ui/Container";
+import { Coordinates } from "../../model/Coordinates";
 
-const CurrentWeatherComponent: React.FC = () => {
+export interface CurrentWeatherComponentProps{
+    coordinates: Coordinates
+}
 
-    const { error, sendRequest } = UseWeatherApi<CurrentWeather>({ lat:'50.075539', lon:'14.437800'});
+const CurrentWeatherComponent: React.FC<CurrentWeatherComponentProps> = (props) => {
+
+    const { error, sendRequest } = UseWeatherApi<CurrentWeather>({ lat: props.coordinates.lat.toString(), lon: props.coordinates.lat.toString()});
     const [currentWeather, setCurrentWeather] = useState<CurrentWeather[]>([]);
 
 

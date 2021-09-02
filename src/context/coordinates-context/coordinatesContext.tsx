@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import React, { useReducer } from 'react';
 import { reducer, CoordinatesReducer } from "./reducer/CoordinatesReducer";
 import { Coordinates } from '../../model/Coordinates';
@@ -26,7 +25,7 @@ export const CoordinatesContextProvider: React.FC<CoordinatesContextProviderProp
 
   const [state, dispatch] = useReducer<CoordinatesReducer>(reducer, reducerInitialState);
 
-  const setCoorinatesHandler = (lat: number, long: number)=> {
+  const setCoordinatesHandler = (lat: number, long: number)=> {
     dispatch({actionType: CoordinatesReducerAction.SETCOORDINATES, value: {lat, long}});
   }
 
@@ -35,7 +34,7 @@ export const CoordinatesContextProvider: React.FC<CoordinatesContextProviderProp
     <CoordinatesContext.Provider
       value={{
         coordinates: state.coordinates,
-        setCoordinates: setCoorinatesHandler,
+        setCoordinates: setCoordinatesHandler,
       }}
     >
       {props.children}

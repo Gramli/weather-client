@@ -3,7 +3,7 @@ import Container from "../ui/Container";
 import ValidationInput from "../ui/ValidationInput";
 
 interface CoordinatesInputProps {
-    onValidate: (isValid:boolean) => void,
+    onValidate: (isValid:boolean, value?:string) => void,
 }
 
 const CoordinatesInput: React.VFC<CoordinatesInputProps> = (props) => {
@@ -12,7 +12,7 @@ const CoordinatesInput: React.VFC<CoordinatesInputProps> = (props) => {
     const [isTouched, setIsTouched] = useState(false);
 
     const isValid = value.trim() !== '' && isTouched;
-    props.onValidate(isValid);
+    props.onValidate(isValid, isValid ? value : undefined);
 
     const onBlurhandler = () => {
         setIsTouched(true);

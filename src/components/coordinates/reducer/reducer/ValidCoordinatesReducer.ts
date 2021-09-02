@@ -1,16 +1,31 @@
 import { Reducer } from "react";
-import { CoordinatesReducerAction, CoordinatesReducerActions } from "./CoordinatesReducerActions";
-import { CoordinatesReducerState } from "./CoordinatesReducerState";
+import { ValidCoordinatesReducerAction, ValidCoordinatesReducerActions } from "./ValidCoordinatesReducerActions";
+import { ValidCoordinatesReducerState } from "./ValidCoordinatesReducerState";
 
-export type ValidCoordinatesReducer = Reducer<CoordinatesReducerState, CoordinatesReducerActions>;
+export type ValidCoordinatesReducer = Reducer<ValidCoordinatesReducerState, ValidCoordinatesReducerActions>;
 
-export const reducer: ValidCoordinatesReducer = (prevState:CoordinatesReducerState, action:CoordinatesReducerActions) => {
+export const reducer: ValidCoordinatesReducer = (prevState:ValidCoordinatesReducerState, action:ValidCoordinatesReducerActions) => {
 
     switch(action.actionType){
-        case CoordinatesReducerAction.SETCOORDINATES:
+        case ValidCoordinatesReducerAction.SETLATISVALID:
             return {
                 ...prevState,
-                coordinates: action.value
+                isLatValid: action.value as boolean
             }
+            case ValidCoordinatesReducerAction.SETLONGISVALID:
+                return {
+                    ...prevState,
+                    isLongValid: action.value as boolean
+                }
+            case ValidCoordinatesReducerAction.SETLAT:
+                return {
+                    ...prevState,
+                    lat: action.value as number
+                }
+            case ValidCoordinatesReducerAction.SETLONG:
+                return {
+                    ...prevState,
+                    long: action.value as number
+                }
     }
 }

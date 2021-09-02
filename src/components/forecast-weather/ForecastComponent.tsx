@@ -5,10 +5,15 @@ import Card from "../ui/Card";
 import LabeledText from "../ui/LabeledText";
 import WeatherBitImage from "../ui/WeatherBitImage";
 import Container from "../ui/Container";
+import { Coordinates } from "../../model/Coordinates";
 
-const ForecastComponent: React.FC = () => {
+export interface ForecastComponentProps{
+    coordinates: Coordinates
+}
+
+const ForecastComponent: React.FC<ForecastComponentProps> = (props) => {
     
-    const { error, sendRequest } = UseWeatherApi<Forecast>({ lat:'50.075539', lon:'14.437800'});
+    const { error, sendRequest } = UseWeatherApi<Forecast>({ lat: props.coordinates.lat.toString(), lon:props.coordinates.long.toString()});
     const [currentWeather, setCurrentWeather] = useState<Forecast[]>([]);
 
 
