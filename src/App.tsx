@@ -1,18 +1,11 @@
-import React from 'react';
-import CoordinatesForm from './components/coordinates/CoordinatesForm';
-import CurrentWeatherComponent from './components/current-weather/CurrentWeatherComponent';
-import ForecastComponent from './components/forecast-weather/ForecastComponent';
-import Line from './components/ui/Line';
+import ShowWeather from './components/show-weather/ShowWeather';
+import { CoordinatesContextProvider } from './context/coordinates-context/coordinatesContext';
 
 function App() {
   return (
-    <div>
-      <CoordinatesForm/>
-      <Line/>
-      <CurrentWeatherComponent />
-      <Line/>
-      <ForecastComponent />
-    </div>
+    <CoordinatesContextProvider coordinates={{lat:-1, long:-1}}>
+      <ShowWeather/>
+    </CoordinatesContextProvider>
   );
 }
 

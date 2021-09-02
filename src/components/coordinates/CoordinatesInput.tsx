@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Container from "../ui/Container";
 import ValidationInput from "../ui/ValidationInput";
 
@@ -12,14 +12,19 @@ const CoordinatesInput: React.VFC<CoordinatesInputProps> = (props) => {
     const [isTouched, setIsTouched] = useState(false);
 
     const isValid = value.trim() !== '' && isTouched;
-    props.onValidate(isValid, isValid ? value : undefined);
 
     const onBlurhandler = () => {
-        setIsTouched(true);
+        if(!isTouched){
+            setIsTouched(true);
+        }
     }
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>)=>{
-        setValue(event.target.value);
+        const eventValue = event.target.value;
+        if(value !== eventValue){
+            setValue(eventValue);
+            props.onValidate(true,eventValue);
+        }
     }
 
     return <Container>

@@ -24,7 +24,7 @@ const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
     const onSubmitHandler = (event: FormEvent) => {
         event.preventDefault();
 
-        if(!state.isLatValid || !state.isLongValid){
+        if(state.lat === -1 && state.long === -1){
             return;
         }
 
@@ -33,16 +33,14 @@ const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
     }
 
     const onValidateLatHandler =(isValid: boolean, value?:string)=>{
-        dispatch({actionType: ValidCoordinatesReducerAction.SETLATISVALID, value: isValid});
         if(isValid){
             dispatch({actionType: ValidCoordinatesReducerAction.SETLAT, value: +(value as string)});
         }
     }
 
     const onValidateLongHandler =(isValid: boolean, value?:string)=>{
-        dispatch({actionType: ValidCoordinatesReducerAction.SETLONGISVALID, value: isValid});
         if(isValid){
-            dispatch({actionType: ValidCoordinatesReducerAction.SETLAT, value: +(value as string)});
+            dispatch({actionType: ValidCoordinatesReducerAction.SETLONG, value: +(value as string)});
         }
     }
 

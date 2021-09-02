@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CoordinatesContext from "../../context/coordinates-context/coordinatesContext";
+import CoordinatesContext, { CoordinatesContextProvider } from "../../context/coordinates-context/coordinatesContext";
 import CoordinatesForm from "../coordinates/CoordinatesForm";
 import CurrentWeatherComponent from "../current-weather/CurrentWeatherComponent";
 import ForecastComponent from "../forecast-weather/ForecastComponent";
@@ -13,14 +13,13 @@ const ShowWeather: React.FC = () => {
   let content = <p>Please select Coordinates.</p>
 
   const onSubmitHandler = ()=> {
-    content = <>
+    return <>
       <Line/>
       <CurrentWeatherComponent coordinates={coordinatesContext.coordinates} />
       <Line/>
       <ForecastComponent coordinates={coordinatesContext.coordinates}/>
       </>
   }
-
 
     return <Container>
        <CoordinatesForm onSubmit={onSubmitHandler}/>
