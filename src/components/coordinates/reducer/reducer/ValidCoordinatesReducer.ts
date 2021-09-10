@@ -2,6 +2,7 @@ import { Reducer } from "react";
 import { ValidCoordinatesReducerAction, ValidCoordinatesReducerActions } from "./ValidCoordinatesReducerActions";
 import { ValidCoordinatesReducerState } from "./ValidCoordinatesReducerState";
 
+//TODO REMOVE VALID
 export type ValidCoordinatesReducer = Reducer<ValidCoordinatesReducerState, ValidCoordinatesReducerActions>;
 
 export const reducer: ValidCoordinatesReducer = (prevState:ValidCoordinatesReducerState, action:ValidCoordinatesReducerActions) => {

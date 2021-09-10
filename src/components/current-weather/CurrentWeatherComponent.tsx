@@ -14,7 +14,7 @@ export interface CurrentWeatherComponentProps{
 
 const CurrentWeatherComponent: React.FC<CurrentWeatherComponentProps> = (props) => {
 
-    const { error, sendRequest } = UseWeatherApi<CurrentWeather>({ lat: props.coordinates.lat.toString(), lon: props.coordinates.lat.toString()});
+    const { error, sendRequest } = UseWeatherApi<CurrentWeather>({ lat: props.coordinates.lat.toString(), lon: props.coordinates.long.toString()});
     const [currentWeather, setCurrentWeather] = useState<CurrentWeather[]>([]);
 
 

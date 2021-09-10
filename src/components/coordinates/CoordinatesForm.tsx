@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useReducer } from "react";
 import CoordinatesContext from "../../context/coordinates-context/coordinatesContext";
+import Button from "../ui/Button";
 import Container from "../ui/Container";
 import CoordinatesInput from "./CoordinatesInput";
 import { reducer, ValidCoordinatesReducer } from "./reducer/reducer/ValidCoordinatesReducer";
@@ -24,7 +25,7 @@ const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
     const onSubmitHandler = (event: FormEvent) => {
         event.preventDefault();
 
-        if(state.lat === -1 && state.long === -1){
+        if(state.lat === -1 || state.long === -1){
             return;
         }
 
@@ -47,14 +48,12 @@ const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
     return <Container>
         <form onSubmit={onSubmitHandler}>
             <div>
-                <label>Latitude: </label>
-                <CoordinatesInput onValidate={onValidateLatHandler} />         
+                <CoordinatesInput label={"Latitude:"} onValidate={onValidateLatHandler} />         
             </div>
             <div>
-                <label>Longtitude:</label>
-                <CoordinatesInput onValidate={onValidateLongHandler}/> 
+                <CoordinatesInput label={"Longtitude:"} onValidate={onValidateLongHandler}/> 
             </div>
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
         </form>
     </Container>
 }
