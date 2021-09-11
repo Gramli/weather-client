@@ -22,7 +22,7 @@ const UseWeatherApi = <T extends Response>(props: UseWeatherApiProps)=> {
         try{
         const result = await axios.get<WeatherData<T>>(url, {
             headers: {
-                'x-rapidapi-host': '',
+                'x-rapidapi-host': 'weatherbit-v1-mashape.p.rapidapi.com',
                 'x-rapidapi-key': ''
             },
             params:{lat: props.lat, lon: props.lon}

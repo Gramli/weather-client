@@ -7,3 +7,4 @@ App demonstrates:
 - connect to API using axios
 - using of useState, useEffect, useContext, useReducer and useCallback hooks
 - using custom generic react hook
+- form validation

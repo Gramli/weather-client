@@ -6,6 +6,7 @@ const Button = styled.button`
     font-weight: bold;
     border-color: darkorange;
     background-color: #ffa60061;
+    margin: 0.5em 1em 0.5em 1em;
 `;
 
 export default Button;

@@ -1,25 +1,36 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Container from "../ui/Container";
 import Label from "../ui/Label";
 import ValidationInput from "../ui/ValidationInput";
 
 interface CoordinatesInputProps {
     label: string
-    onValidate: (isValid:boolean, value?:string) => void,
+    onValidValue: (value?:string) => void,
+    defaultValue: string
 }
 
-//TODO FIX VALIDATIOM
 const CoordinatesInput: React.VFC<CoordinatesInputProps> = (props) => {
 
     const [value, setValue] = useState('');
     const [isTouched, setIsTouched] = useState(false);
-    const regex = new RegExp('^[0-9]*\.{0,1}[0-9]+$');
+    const regex = new RegExp('^[-+]?[0-9]*\.{0,1}[0-9]+$');
 
     const validateValue = (input: string) => {
-        return regex.test(input) || input === '';
+        return regex.test(input);
     }
 
-    const isValid = isTouched ? validateValue(value) : !isTouched; //FIX
+    const invokeValue = (valueToInvoke: string)=>{
+        if(validateValue(valueToInvoke)){
+            props.onValidValue(valueToInvoke);
+        }
+    }
+
+    const isValid = isTouched ? validateValue(value) : true;
+
+    useEffect(() => {
+        setValue(props.defaultValue);
+        invokeValue(props.defaultValue);
+      }, [props.defaultValue])
 
     const onBlurhandler = () => {
         if(!isTouched){
@@ -29,9 +40,9 @@ const CoordinatesInput: React.VFC<CoordinatesInputProps> = (props) => {
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>)=>{
         const eventValue = event.target.value;
-        if(value !== eventValue && validateValue(eventValue)){
+        if(value !== eventValue){
             setValue(eventValue);
-            props.onValidate(true, eventValue); //FIX
+            invokeValue(eventValue);
         }
     }
 

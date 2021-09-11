@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useReducer } from "react";
 import CoordinatesContext from "../../context/coordinates-context/coordinatesContext";
+import { Coordinates } from "../../model/Coordinates";
 import Button from "../ui/Button";
 import Container from "../ui/Container";
 import CoordinatesInput from "./CoordinatesInput";
@@ -14,7 +15,8 @@ const reducerInitialState = {
 }
 
 export interface CoordinatesFormProps{
-    onSubmit:()=>void
+    onSubmit:()=>void;
+    defaultCoordinates: Coordinates,
 }
 
 const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
@@ -33,25 +35,21 @@ const CoordinatesForm: React.FC<CoordinatesFormProps> = (props) => {
         props.onSubmit();
     }
 
-    const onValidateLatHandler =(isValid: boolean, value?:string)=>{
-        if(isValid){
-            dispatch({actionType: ValidCoordinatesReducerAction.SETLAT, value: +(value as string)});
-        }
+    const onValidateLatHandler =(value?:string)=>{
+            dispatch({actionType: ValidCoordinatesReducerAction.SETLAT, value: parseFloat(value as string)});
     }
 
-    const onValidateLongHandler =(isValid: boolean, value?:string)=>{
-        if(isValid){
-            dispatch({actionType: ValidCoordinatesReducerAction.SETLONG, value: +(value as string)});
-        }
+    const onValidateLongHandler =(value?:string)=>{
+            dispatch({actionType: ValidCoordinatesReducerAction.SETLONG, value: parseFloat(value as string)});
     }
 
     return <Container>
         <form onSubmit={onSubmitHandler}>
             <div>
-                <CoordinatesInput label={"Latitude:"} onValidate={onValidateLatHandler} />         
+                <CoordinatesInput defaultValue={props.defaultCoordinates.lat === -1 ? '' :  props.defaultCoordinates.lat.toString()} label={"Latitude:"} onValidValue={onValidateLatHandler} />         
             </div>
             <div>
-                <CoordinatesInput label={"Longtitude:"} onValidate={onValidateLongHandler}/> 
+                <CoordinatesInput defaultValue={props.defaultCoordinates.long === -1 ? '' :  props.defaultCoordinates.long.toString()} label={"Longtitude:"} onValidValue={onValidateLongHandler}/> 
             </div>
             <Button type="submit">Submit</Button>
         </form>
