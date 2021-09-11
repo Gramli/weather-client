@@ -1,5 +1,5 @@
 # Weather Client
-React app example which geeting data from weatherbit API and show them in components.
+React app learning example which geeting data from weatherbit API and show them in components.
 
 App demonstrates:
 - react + typescript
